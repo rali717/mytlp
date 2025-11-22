@@ -3,18 +3,143 @@
         xmlns:vm="using:mytlp.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+
+        xmlns:userControls="clr-namespace:mytlp.Views.UserControls"
+
+        xmlns:behaviors="clr-namespace:mytlp.Behaviors;assembly=mytlp"
+
+        xmlns:cc="clr-namespace:mytlp.CustomControls;assembly=mytlp"
+        xmlns:local="clr-namespace:mytlp.Views.UserControls"
+
+
+        xmlns:rs="using:RangeSlider.Avalonia.Controls"
+        mc:Ignorable="d"
+        d:DesignWidth="800"
+        d:DesignHeight="450"
         x:Class="mytlp.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="mytlp">
+        Icon="/Assets/PhosphorIcons/battery-charging-vertical-bold__F7F7F7.png"
+        Title="mytlp"
+        Height="950"
+        Width="1200"
+        MinHeight="400"
+        MaxHeight="980"
+        MinWidth="600"
+        MaxWidth="1400"
+        WindowStartupLocation="CenterOwner"
+        Background="#131313">
+
+
+    <Window.Styles>
+        <StyleInclude Source="/Styles/SliderStyles.axaml" />
+
+        <!-- <StyleInclude Source="/Styles/RangeSlider.axaml" /> -->
+    </Window.Styles>
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
+        <vm:MainWindowViewModel />
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
+    <ScrollViewer Background="#131313">
+        <StackPanel Orientation="Horizontal"> <!-- Log + Auswahlliste -->
+            <!-- <ContentControl Content="{StaticResource {x:Type DataTemplate}}"/> -->
+
+            <!-- <userControls:Log /> -->
+
+
+            <StackPanel>
+
+                <TextBlock FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
+                           Margin="25,25,25,25">
+                    Battery Profiles:
+                </TextBlock>
+
+
+                <ScrollViewer Background="#303030">
+                    <ListBox Height="700" Width="400" Background="#181818" ItemsSource="{Binding  BatteryProfiles}">
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+
+                                <Border Background="#181818"
+                                        BorderBrush="Black"
+                                        BorderThickness="4"
+                                        CornerRadius="16"
+                                        Padding="5" Margin="10">
+
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBox Text="{Binding Path=  Name,Mode=TwoWay }"
+                                                     Width="200" TextAlignment="Center" FontSize="20" Margin="25" />
+                                            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+
+                                                <!-- <TextBox Text="{Binding Path=  Max }" TextAlignment="Center" -->
+                                                <!--          Margin="0,0,0,0" /> -->
+                                                <!-- -->
+                                                <!-- <TextBox Text="{Binding Path=  Min,Mode=TwoWay }" -->
+                                                <!--          TextAlignment="Center" -->
+                                                <!--          Margin="0,0,0,0"/> -->
+
+                                                <NumericUpDown Value="{Binding Path=  Max,Mode=TwoWay }"
+                                                               TextAlignment="Center" ShowButtonSpinner="False"
+                                                               FormatString="0" Increment="1" Minimum="0" Maximum="100"
+                                                               Margin="0,0,0,0" />
+
+
+                                                <NumericUpDown Value="{Binding Path=  Min,Mode=TwoWay }"
+                                                               TextAlignment="Center" ShowButtonSpinner="False"
+                                                               FormatString="0" Increment="1" Minimum="0" Maximum="100" />
+
+
+                                            </StackPanel>
+                                        </StackPanel>
+
+                                        <rs:RangeSlider Orientation="Horizontal"
+                                                        Height="50"
+                                                        Margin="25,10,25,5"
+                                                        Minimum="0"
+                                                        Maximum="100"
+                                                        MoveWholeRange="True"
+                                                        UpperSelectedValue="{Binding Max}"
+                                                        LowerSelectedValue="{Binding Min,Mode=TwoWay }"
+                                                        IsThumbOverlap="True"
+                                                        TickFrequency="5"
+                                                        IsSnapToTickEnabled="True"
+                                                        TickPlacement="BottomRight" />
+
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </ScrollViewer>
+
+                <Button Command="{Binding AddProfileCommand}"
+                        Height="50" Width="50" HorizontalAlignment="Center" Margin="20">
+                    <Image Source="/Assets/icon_plus.png" />
+                </Button>
+
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Margin="30,20,0,0">
+
+                 <userControls:Log /> 
+                 <userControls:Panel> </userControls:Panel> 
+
+                <!-- <TextBox Text="0" -->
+                <!--          x:Name="NumericTextBox" /> -->
+                <!-- <TextBox> -->
+                <!--     <Interaction.Behaviors> -->
+                <!--         <behaviors:NumericInputBehavior /> -->
+                <!--     </Interaction.Behaviors> -->
+                <!-- </TextBox> -->
+
+            </StackPanel>
+
+        </StackPanel> <!-- Log + Auswahlliste -->
+
+    </ScrollViewer>
 </Window>

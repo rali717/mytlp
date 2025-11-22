@@ -1,15 +1,47 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+
              x:Class="mytlp.App"
              xmlns:local="using:mytlp"
+             xmlns:fluent="https://github.com/DmitryNizhebovsky/Avalonia.RangeSlider"
+             xmlns:cc="clr-namespace:mytlp.CustomControls"
              RequestedThemeVariant="Default">
-             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+    <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
     <Application.DataTemplates>
-        <local:ViewLocator/>
+        <local:ViewLocator />
     </Application.DataTemplates>
-  
+
     <Application.Styles>
         <FluentTheme />
+        <fluent:RangeSliderTheme />
+        <Style Selector="cc|NumericTextBox" />
     </Application.Styles>
+
+
+    <TrayIcon.Icons>
+        <TrayIcons>
+            <TrayIcon Icon="/Assets/PhosphorIcons/battery-charging-vertical-bold__F7F7F7.png"
+                      ToolTipText="Battery-Charging-Profiles"
+                      Clicked="TrayIcon_OnClicked">
+                <TrayIcon.Menu>
+                    <NativeMenu>
+                        <!-- <NativeMenuItem Header="Settings"> -->
+                        <!--     <NativeMenu> -->
+                        <NativeMenuItem Header="Home [65/70]" />
+                        <NativeMenuItem Header="Mobile [95/100]" />
+                        <NativeMenuItemSeparator />
+                        <NativeMenuItem Header="" />
+                        <NativeMenuItem Header="Charge once to 100%" />
+                        <NativeMenuItem Header="" />
+                        <NativeMenuItemSeparator />
+                        <NativeMenuItem Header="Settings" />
+                        <!--     </NativeMenu> -->
+                        <!-- </NativeMenuItem> -->
+                    </NativeMenu>
+                </TrayIcon.Menu>
+            </TrayIcon>
+        </TrayIcons>
+    </TrayIcon.Icons>
+
 </Application>

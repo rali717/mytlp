@@ -1,0 +1,12 @@
+[
+  {
+    "Name": "Mobile",
+    "Min": 95,
+    "Max": 100
+  },
+  {
+    "Name": "Home",
+    "Min": 60,
+    "Max": 65
+  }
+]

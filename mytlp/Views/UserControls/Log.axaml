@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="mytlp.Views.UserControls.Log" 
+             xmlns:local="clr-namespace:mytlp.Views.UserControls">
+
+    <StackPanel Spacing="8" Margin="25">
+  
+        <Label Content="Log:" />
+        <Border Background="#181818"
+                BorderBrush="SlateGray"
+                BorderThickness="4"
+                CornerRadius="16"
+                Padding="5" Margin="10">
+        <TextBlock Width="600" Height="400"  Background="#181818"   VerticalAlignment="Top" >
+            ABC           
+        </TextBlock>
+        </Border>
+    </StackPanel>
+
+</UserControl>

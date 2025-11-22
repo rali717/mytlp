@@ -1,3 +1,4 @@
+using System;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core;
@@ -6,6 +7,7 @@ using System.Linq;
 using Avalonia.Markup.Xaml;
 using mytlp.ViewModels;
 using mytlp.Views;
+using System.Diagnostics;
 
 namespace mytlp;
 
@@ -43,5 +45,10 @@ public partial class App : Application
         {
             BindingPlugins.DataValidators.Remove(plugin);
         }
+    }
+        private void TrayIcon_OnClicked(object? sender, EventArgs e)
+    {
+        Trace.WriteLine("Icon clicked");
+       // throw new NotImplementedException();
     }
 }
