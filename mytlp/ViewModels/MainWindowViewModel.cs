@@ -1,10 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿
 using System.Diagnostics;
-using System.Windows;
-using Avalonia.Rendering.Composition.Animations;
 using mytlp.Models;
 
 // using mytlp.Models;
@@ -16,7 +11,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Threading.Tasks;
 using System;
-using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
 
 public partial class BatteryProfile(string name, int min, int max) : ObservableObject
@@ -77,6 +71,7 @@ public partial class MainWindowViewModel : ViewModelBase
         Debug.WriteLine("OnSaveProfiles");
         SaveBatteryProfiles.Save_BatteryProfiles("BatteryProfiles.json", BatteryProfiles);
         LogText = LogText + "\n- All Charging profiles saved\n";
+        
     }
 
     [RelayCommand]
@@ -89,7 +84,35 @@ public partial class MainWindowViewModel : ViewModelBase
         LogText = LogText + "\n- All stored charging profiles reloaded.\n";
     }
 
+    [RelayCommand]
+    public void OnShowCurrentThresholds()
+    {
+        LogText = LogText + "\n- Current Charging Thresholds:.\n";
+        var process = new Process
+        {
+            StartInfo = new ProcessStartInfo
+            {
+                FileName = "pkexec",
+                Arguments = "cat /sys/class/power_supply/BAT0/charge_start_threshold ; cat /sys/class/power_supply/BAT0/charge_stop_threshold",
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true
+            }
+        };
+        process.Start();
 
+        string output = process.StandardOutput.ReadToEnd();
+
+        string error = process.StandardError.ReadToEnd();
+        process.WaitForExit();
+
+        Console.WriteLine(output);
+
+        LogText = LogText + output + error;
+ 
+    }
+    
+    
     [RelayCommand]
     public void OnFullCharge()
     {
@@ -161,7 +184,8 @@ public partial class MainWindowViewModel : ViewModelBase
                 StartInfo = new ProcessStartInfo
                 {
                     FileName = "pkexec",
-                    Arguments = "tlp setcharge " + SelectedBatteryProfile.Min + " " + SelectedBatteryProfile.Max + " BAT0",
+                    Arguments = "tlp setcharge " + SelectedBatteryProfile.Min + " " + SelectedBatteryProfile.Max +
+                                " BAT0",
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
                     RedirectStandardError = true
@@ -175,13 +199,27 @@ public partial class MainWindowViewModel : ViewModelBase
             process.WaitForExit();
 
             Console.WriteLine(output);
-            LogText = LogText + "\n\ntlp setcharge " + SelectedBatteryProfile.Min + " " + SelectedBatteryProfile.Max + " BAT0\n\n" + output + error;
+            LogText = LogText + "\n\ntlp setcharge " + SelectedBatteryProfile.Min + " " + SelectedBatteryProfile.Max +
+                      " BAT0\n\n" + output + error;
         }
     }
+
+    
+    public void MoveItem(BatteryProfile source, BatteryProfile target)
+    {
+        int oldIndex = BatteryProfiles.IndexOf(source);
+        int newIndex = BatteryProfiles.IndexOf(target);
+
+        if (oldIndex != -1 && newIndex != -1 && oldIndex != newIndex)
+            BatteryProfiles.Move(oldIndex, newIndex);
+    }
+   
 
 
     public MainWindowViewModel()
     {
+        OnShowCurrentThresholds();
+        
         OnLoadProfiles();
 
         if ((_batteryProfiles == null) || (BatteryProfiles.Count == 0))
@@ -189,10 +227,12 @@ public partial class MainWindowViewModel : ViewModelBase
             _batteryProfiles =
             [
                 new BatteryProfile("Mobile", 97, 100),
-                new BatteryProfile("Home", 65, 70)
+                new BatteryProfile("Home", 65, 70)  
             ];
-
+            OnSaveProfiles();
             //_batteryProfiles.Add(new BatteryProfile("Other", 75, 80));
         }
     }
+    
+    
 }
