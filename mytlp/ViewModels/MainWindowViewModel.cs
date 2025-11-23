@@ -41,11 +41,24 @@ public partial class MainWindowViewModel : ViewModelBase
     [ObservableProperty] private ObservableCollection<BatteryProfile> _batteryProfiles;
     //[ObservableProperty] private List<BatteryProfile> _batteryProfiles;
 
+    //[ObservableProperty] private BatteryProfile? selectedItem;
+    [ObservableProperty] private BatteryProfile? _selectedBatteryProfile;
+
+    [RelayCommand]
+    public void OnDeleteProfile()
+    {
+        Debug.WriteLine("OnDeleteprofile");
+        if ((SelectedBatteryProfile != null) && (BatteryProfiles.Count > 1))
+        {
+            BatteryProfiles.Remove(SelectedBatteryProfile);
+        }
+    }
+
 
     [RelayCommand]
     public void OnSetChargeLimits()
     {
-        Debug.WriteLine("OnDSetChargeLimits");
+        Debug.WriteLine("OnSetChargeLimits");
 
         var process = new Process
         {
@@ -68,8 +81,6 @@ public partial class MainWindowViewModel : ViewModelBase
         Console.WriteLine(output);
     }
 
-    //[ObservableProperty] private BatteryProfile _selectedBatteryProfile;
-
 
     [RelayCommand]
     public void AddProfileCommand()
@@ -83,32 +94,24 @@ public partial class MainWindowViewModel : ViewModelBase
         Debug.WriteLine("Save_Exit");
         SaveBatteryProfiles.Save_BatteryProfiles("BatteryProfiles.json", BatteryProfiles);
     }
-    
+
+
     [RelayCommand]
-    public void OnDeleteProfile ()
-    {
-        Debug.WriteLine("OnDeleteprofile");
-        if (BatteryProfiles.Count>1){
-            BatteryProfiles.RemoveAt(BatteryProfiles.Count - 1);
-        }
-    }
-    
-    [RelayCommand]
-    public void OnSaveProfiles ()
+    public void OnSaveProfiles()
     {
         Debug.WriteLine("OnSaveProfiles");
-        if (BatteryProfiles.Count>1){
+        if (BatteryProfiles.Count > 1)
+        {
             BatteryProfiles.RemoveAt(BatteryProfiles.Count - 1);
         }
     }
 
     [RelayCommand]
-    public void OnLoadProfiles ()
+    public void OnLoadProfiles()
     {
         Debug.WriteLine("OnLoadProfiles");
-
     }
-    
+
     public MainWindowViewModel()
     {
         _batteryProfiles =

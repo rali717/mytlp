@@ -8,10 +8,17 @@
     <StackPanel Spacing="8" Margin="25">
   
         <Label Content="Log:" />
-        <Button Content="Delete selected profile" Command="{Binding OnDeleteProfile }"/>
+        
+        <Button Content="Delete selected profile" 
+                Command="{Binding OnDeleteProfile }"
+                IsEnabled="{Binding SelectedBatteryProfile, Converter={x:Static ObjectConverters.IsNotNull}}"/>
+        
         <Button Content="Charge once to 100%"/>
+        
         <Button Content="Save All + Exit" Command="{Binding OnSave_Exit }"/>
+        
         <Button Content="Reload Profiles" Command="{Binding OnLoadProfiles }"/>
+        
         <Button Content="Set Chargelimits [65/70]" Command="{Binding OnSetChargeLimits }"/>
         
         <!-- <Button Content="Reload Profiles" Command="{Binding OnReloadProfiles }"/> -->

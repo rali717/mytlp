@@ -14,8 +14,8 @@
 
         xmlns:rs="using:RangeSlider.Avalonia.Controls"
         mc:Ignorable="d"
-        d:DesignWidth="800"
-        d:DesignHeight="450"
+        d:DesignWidth="1200"
+        d:DesignHeight="950"
         x:Class="mytlp.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/PhosphorIcons/battery-charging-vertical-bold__F7F7F7.png"
@@ -59,7 +59,9 @@
 
 
                 <ScrollViewer Background="#303030">
-                    <ListBox Height="700" Width="400" Background="#181818" ItemsSource="{Binding  BatteryProfiles}">
+                    <ListBox Height="700" Width="400" Background="#181818" 
+                             ItemsSource="{Binding  BatteryProfiles}"
+                             SelectedItem="{Binding SelectedBatteryProfile}">
 
                         <ListBox.ItemTemplate>
                             <DataTemplate>
