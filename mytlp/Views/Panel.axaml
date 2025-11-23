@@ -5,11 +5,17 @@
              xmlns:vm="using:mytlp.ViewModels">
 
 
-    <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto,Auto,Auto" HorizontalAlignment="Stretch" Margin="25">
+
+    <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto,Auto,Auto" 
+          HorizontalAlignment="Stretch" Margin="25"
+          >
+        
+
 
         <StackPanel Grid.Row="0" Grid.Column="0" Spacing="0" Margin="10">
 
             <Button Content="Delete selected profile"
+                    Button.FontSize="18"
                     HorizontalAlignment="Stretch"
                     Command="{Binding OnDeleteProfile }"
                     IsEnabled="{Binding SelectedBatteryProfile, Converter={x:Static ObjectConverters.IsNotNull}}" />
@@ -19,6 +25,7 @@
 
         <StackPanel Grid.Row="2" Grid.Column="0" Spacing="0" Margin="10">
             <Button Content="Reload Profiles" 
+                    Button.FontSize="18"
                     HorizontalAlignment="Stretch"
                     Command="{Binding OnLoadProfiles }"
                     />
@@ -26,6 +33,7 @@
 
         <StackPanel Grid.Row="3" Grid.Column="0" Spacing="0" Margin="10">
             <Button Content="Save all profiles" 
+                    Button.FontSize="18"
                     HorizontalAlignment="Stretch"
                     Command="{Binding OnSaveProfiles }" />
         </StackPanel>
@@ -37,18 +45,21 @@
 
         <StackPanel Grid.Row="0" Grid.Column="2" Spacing="0" Margin="10">
             <Button Content="Charge to 100%   [only once]" 
+                    Button.FontSize="18"
                     HorizontalAlignment="Stretch"
                     Command="{Binding OnChargeFullOnce }"/>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="2" Spacing="0" Margin="10">
             <Button Content="Charge to 100%" 
+                    Button.FontSize="18"
                     HorizontalAlignment="Stretch"
                     Command="{Binding OnFullCharge }" />
         </StackPanel>
         
         <StackPanel Grid.Row="3" Grid.Column="2" Spacing="0" Margin="10">
             <Button Content="Activate selected Chargelimits" 
+                    Button.FontSize="18"
                     HorizontalAlignment="Stretch"
                     IsEnabled="{Binding SelectedBatteryProfile, Converter={x:Static ObjectConverters.IsNotNull}}" 
                     Command="{Binding OnSetChargeLimits}" />
