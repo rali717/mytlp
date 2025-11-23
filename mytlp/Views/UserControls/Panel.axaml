@@ -11,7 +11,7 @@
         <Button Content="Delete selected profile" Command="{Binding OnDeleteProfile }"/>
         <Button Content="Charge once to 100%"/>
         <Button Content="Save All + Exit" Command="{Binding OnSave_Exit }"/>
-        <Button Content="Reload Profiles" Command="{Binding AddProfileCommand }"/>
+        <Button Content="Reload Profiles" Command="{Binding OnLoadProfiles }"/>
         <Button Content="Set Chargelimits [65/70]" Command="{Binding OnSetChargeLimits }"/>
         
         <!-- <Button Content="Reload Profiles" Command="{Binding OnReloadProfiles }"/> -->

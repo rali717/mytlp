@@ -102,6 +102,12 @@ public partial class MainWindowViewModel : ViewModelBase
         }
     }
 
+    [RelayCommand]
+    public void OnLoadProfiles ()
+    {
+        Debug.WriteLine("OnLoadProfiles");
+
+    }
     
     public MainWindowViewModel()
     {
