@@ -5,7 +5,7 @@
              xmlns:vm="using:mytlp.ViewModels">
 
 
-    <Grid ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto,Auto,Auto"  Margin="25">
+    <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto,Auto,Auto" HorizontalAlignment="Stretch" Margin="25">
 
         <StackPanel Grid.Row="0" Grid.Column="0" Spacing="0" Margin="10">
 
@@ -35,21 +35,23 @@
 
        
 
-        <StackPanel Grid.Row="0" Grid.Column="1" Spacing="0" Margin="10">
+        <StackPanel Grid.Row="0" Grid.Column="2" Spacing="0" Margin="10">
             <Button Content="Charge to 100%   [only once]" 
-                    HorizontalAlignment="Stretch"/>
+                    HorizontalAlignment="Stretch"
+                    Command="{Binding OnChargeFullOnce }"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Grid.Column="1" Spacing="0" Margin="10">
-            <Button Content="MOIN" 
+        <StackPanel Grid.Row="1" Grid.Column="2" Spacing="0" Margin="10">
+            <Button Content="Charge to 100%" 
                     HorizontalAlignment="Stretch"
-                    Command="{Binding OnMoin }" />
+                    Command="{Binding OnFullCharge }" />
         </StackPanel>
         
-        <StackPanel Grid.Row="3" Grid.Column="1" Spacing="0" Margin="10">
+        <StackPanel Grid.Row="3" Grid.Column="2" Spacing="0" Margin="10">
             <Button Content="Activate selected Chargelimits" 
                     HorizontalAlignment="Stretch"
-                    Command="{Binding OnSetChargeLimits }" />
+                    IsEnabled="{Binding SelectedBatteryProfile, Converter={x:Static ObjectConverters.IsNotNull}}" 
+                    Command="{Binding OnSetChargeLimits}" />
         </StackPanel>
     </Grid>
 </UserControl>

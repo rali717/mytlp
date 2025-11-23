@@ -37,7 +37,7 @@ public partial class MainWindowViewModel : ViewModelBase
 //     public string Greeting => "Welcome to Avalonia!";
 // #pragma warning restore CA1822 // Mark members as static
 
-    [ObservableProperty] private string _logText = "Log";
+    [ObservableProperty] private string _logText = "";
 
     [ObservableProperty] private ObservableCollection<BatteryProfile> _batteryProfiles;
 
@@ -63,20 +63,13 @@ public partial class MainWindowViewModel : ViewModelBase
     }
 
 
-    // [RelayCommand]
-    // public void OnSave_Exit()
-    // {
-    //     Debug.WriteLine("Save_Exit");
-    //     SaveBatteryProfiles.Save_BatteryProfiles("BatteryProfiles.json", BatteryProfiles);
-    // }
-    
     [RelayCommand]
     public void OnMoin()
     {
         Debug.WriteLine("onMoin");
         LogText = LogText + "\nMoin\n";
     }
-    
+
 
     [RelayCommand]
     public void OnSaveProfiles()
@@ -90,7 +83,6 @@ public partial class MainWindowViewModel : ViewModelBase
     public async Task OnLoadProfiles()
     {
         Debug.WriteLine("OnLoadProfiles");
-        //Load_BatteryProfiles.LoadBatteryProfiles_Async("BatteryProfiles.json");
 
         var loaded = await Load_BatteryProfiles.LoadBatteryProfiles_Async("BatteryProfiles.json");
         BatteryProfiles = new ObservableCollection<BatteryProfile>(loaded);
@@ -99,16 +91,16 @@ public partial class MainWindowViewModel : ViewModelBase
 
 
     [RelayCommand]
-    public void OnSetChargeLimits()
+    public void OnFullCharge()
     {
-        Debug.WriteLine("OnSetChargeLimits");
+        Debug.WriteLine("OnFullCharge");
 
         var process = new Process
         {
             StartInfo = new ProcessStartInfo
             {
                 FileName = "pkexec",
-                Arguments = "tlp setcharge 65 75 BAT0",
+                Arguments = "sudo tlp fullcharge",
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true
@@ -122,17 +114,85 @@ public partial class MainWindowViewModel : ViewModelBase
         process.WaitForExit();
 
         Console.WriteLine(output);
+
+        LogText = LogText + "\n\ntlp fullcharge\n\n" + output + error;
+        LogText = LogText + "After reaching the 100%, the battery stays on 100%.";
+    }
+
+    [RelayCommand]
+    public void OnChargeFullOnce()
+    {
+        Debug.WriteLine("OnChargeFullOnce");
+
+        var process = new Process
+        {
+            StartInfo = new ProcessStartInfo
+            {
+                FileName = "pkexec",
+                Arguments = "sudo tlp chargeonce",
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true
+            }
+        };
+        process.Start();
+
+        string output = process.StandardOutput.ReadToEnd();
+
+        string error = process.StandardError.ReadToEnd();
+        process.WaitForExit();
+
+        Console.WriteLine(output);
+        LogText = LogText + "\n\ntlp chargeonce\n\n" + output + error;
+        LogText = LogText + "After reaching the 100% once, the normal charging threshold were used.";
+    }
+
+
+    [RelayCommand]
+    public void OnSetChargeLimits()
+    {
+        Debug.WriteLine("OnSetChargeLimits");
+
+        if (SelectedBatteryProfile != null)
+        {
+            LogText = LogText + "\n- Set new thresholds.\n";
+            var process = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = "pkexec",
+                    Arguments = "tlp setcharge " + SelectedBatteryProfile.Min + " " + SelectedBatteryProfile.Max + " BAT0",
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true
+                }
+            };
+            process.Start();
+
+            string output = process.StandardOutput.ReadToEnd();
+
+            string error = process.StandardError.ReadToEnd();
+            process.WaitForExit();
+
+            Console.WriteLine(output);
+            LogText = LogText + "\n\ntlp setcharge " + SelectedBatteryProfile.Min + " " + SelectedBatteryProfile.Max + " BAT0\n\n" + output + error;
+        }
     }
 
 
     public MainWindowViewModel()
     {
-        _batteryProfiles =
-        [
-            new BatteryProfile("Mobile", 95, 100),
-            new BatteryProfile("Home", 60, 65)
-        ];
+        OnLoadProfiles();
 
-        _batteryProfiles.Add(new BatteryProfile("test", 10, 20));
+        if ((_batteryProfiles == null) || (BatteryProfiles.Count == 0))
+        {
+            _batteryProfiles =
+            [
+                new BatteryProfile("Mobile", 97, 100),
+                new BatteryProfile("Home", 65, 70)
+            ];
+
+            //_batteryProfiles.Add(new BatteryProfile("Other", 75, 80));
+        }
     }
 }

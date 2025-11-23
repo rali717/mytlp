@@ -32,13 +32,13 @@
         <PackageReference Include="Xaml.Behaviors.Interactivity" Version="11.3.8.2" />
     </ItemGroup>
 
-      <ItemGroup>
-    <Compile Update="Views\UserControls\Log.cs">
-      <DependentUpon>Log.axaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\UserControls\Panel.cs">
-      <DependentUpon>Panel.axaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
+    <ItemGroup>
+      <Compile Update="Views\Log.cs">
+        <DependentUpon>Log.axaml</DependentUpon>
+      </Compile>
+      <Compile Update="Views\Panel.cs">
+        <DependentUpon>Panel.axaml</DependentUpon>
+      </Compile>
+    </ItemGroup>
   
 </Project>
