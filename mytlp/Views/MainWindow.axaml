@@ -59,7 +59,7 @@
 
 
                 <ScrollViewer Background="#303030">
-                    <ListBox Height="700" Width="400" Background="#181818" 
+                    <ListBox Height="700" Width="400" Background="#131313" 
                              ItemsSource="{Binding  BatteryProfiles}"
                              SelectedItem="{Binding SelectedBatteryProfile}">
 
@@ -69,7 +69,7 @@
                                 <Border Background="#181818"
                                         BorderBrush="Black"
                                         BorderThickness="4"
-                                        CornerRadius="16"
+                                        CornerRadius="10"
                                         Padding="5" Margin="10">
 
                                     <StackPanel Orientation="Vertical">
@@ -78,30 +78,23 @@
                                                      Width="200" TextAlignment="Center" FontSize="20" Margin="25" />
                                             <StackPanel Orientation="Vertical" VerticalAlignment="Center">
 
-                                                <!-- <TextBox Text="{Binding Path=  Max }" TextAlignment="Center" -->
-                                                <!--          Margin="0,0,0,0" /> -->
-                                                <!-- -->
-                                                <!-- <TextBox Text="{Binding Path=  Min,Mode=TwoWay }" -->
-                                                <!--          TextAlignment="Center" -->
-                                                <!--          Margin="0,0,0,0"/> -->
-
                                                 <NumericUpDown Value="{Binding Path=  Max,Mode=TwoWay }"
                                                                TextAlignment="Center" ShowButtonSpinner="False"
                                                                FormatString="0" Increment="1" Minimum="0" Maximum="100"
-                                                               Margin="0,0,0,0" />
+                                                               Margin="0,0,0,1" />
 
 
                                                 <NumericUpDown Value="{Binding Path=  Min,Mode=TwoWay }"
                                                                TextAlignment="Center" ShowButtonSpinner="False"
-                                                               FormatString="0" Increment="1" Minimum="0" Maximum="100" />
-
+                                                               FormatString="0" Increment="1" Minimum="0" Maximum="100" 
+                                                               Margin="0,1,0,0" />
 
                                             </StackPanel>
                                         </StackPanel>
 
                                         <rs:RangeSlider Orientation="Horizontal"
                                                         Height="50"
-                                                        Margin="25,10,25,5"
+                                                        Margin="25,0,25,5"
                                                         Minimum="0"
                                                         Maximum="100"
                                                         MoveWholeRange="True"
@@ -120,7 +113,7 @@
                 </ScrollViewer>
 
                 <Button Command="{Binding AddProfileCommand}"
-                        Height="50" Width="50" HorizontalAlignment="Center" Margin="20">
+                        Height="50" Width="300" HorizontalAlignment="Center" Margin="20">
                     <Image Source="/Assets/icon_plus.png" />
                 </Button>
 
@@ -130,14 +123,6 @@
 
                  <userControls:Log /> 
                  <userControls:Panel> </userControls:Panel> 
-
-                <!-- <TextBox Text="0" -->
-                <!--          x:Name="NumericTextBox" /> -->
-                <!-- <TextBox> -->
-                <!--     <Interaction.Behaviors> -->
-                <!--         <behaviors:NumericInputBehavior /> -->
-                <!--     </Interaction.Behaviors> -->
-                <!-- </TextBox> -->
 
             </StackPanel>
 

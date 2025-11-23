@@ -46,7 +46,7 @@ public partial class MainWindowViewModel : ViewModelBase
     [RelayCommand]
     public void AddProfileCommand()
     {
-        BatteryProfiles.Add(new BatteryProfile("Prof-New", 70, 75));
+        BatteryProfiles.Add(new BatteryProfile("New Profile", 95, 100));
     }
 
     [RelayCommand]

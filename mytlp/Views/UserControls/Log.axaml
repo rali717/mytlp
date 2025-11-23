@@ -9,7 +9,7 @@
         <Border Background="#181818"
                 BorderBrush="SlateGray"
                 BorderThickness="4"
-                CornerRadius="16"
+                CornerRadius="10"
                 Padding="5" Margin="10">
         <TextBlock Width="600" Height="400"  Background="#181818"   VerticalAlignment="Top" >
             ABC           

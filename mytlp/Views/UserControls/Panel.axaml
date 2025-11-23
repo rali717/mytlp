@@ -1,28 +1,54 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="mytlp.Views.UserControls.Panel" 
+             x:Class="mytlp.Views.UserControls.Panel"
              x:DataType="vm:MainWindowViewModel"
              xmlns:vm="using:mytlp.ViewModels">
-             
 
-    <StackPanel Spacing="8" Margin="25">
-  
-        <Label Content="Log:" />
-        
-        <Button Content="Delete selected profile" 
-                Command="{Binding OnDeleteProfile }"
-                IsEnabled="{Binding SelectedBatteryProfile, Converter={x:Static ObjectConverters.IsNotNull}}"/>
-        
-        <Button Content="Charge once to 100%"/>
-        
-        <Button Content="Save All + Exit" Command="{Binding OnSaveProfiles }"/>
-        
-        <Button Content="Reload Profiles" Command="{Binding OnLoadProfiles }"/>
-        
-        <Button Content="Set Chargelimits [65/70]" Command="{Binding OnSetChargeLimits }"/>
-        
+
+    <Grid ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto,Auto,Auto"  Margin="25">
+
+        <StackPanel Grid.Row="0" Grid.Column="0" Spacing="0" Margin="10">
+
+            <Button Content="Delete selected profile"
+                    HorizontalAlignment="Stretch"
+                    Command="{Binding OnDeleteProfile }"
+                    IsEnabled="{Binding SelectedBatteryProfile, Converter={x:Static ObjectConverters.IsNotNull}}" />
+        </StackPanel>
+
+ 
+
+        <StackPanel Grid.Row="2" Grid.Column="0" Spacing="0" Margin="10">
+            <Button Content="Reload Profiles" 
+                    HorizontalAlignment="Stretch"
+                    Command="{Binding OnLoadProfiles }"
+                    />
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Grid.Column="0" Spacing="0" Margin="10">
+            <Button Content="Save all profiles" 
+                    HorizontalAlignment="Stretch"
+                    Command="{Binding OnSaveProfiles }" />
+        </StackPanel>
+
+
         <!-- <Button Content="Reload Profiles" Command="{Binding OnReloadProfiles }"/> -->
-        
-    </StackPanel>
 
+       
+
+        <StackPanel Grid.Row="0" Grid.Column="1" Spacing="0" Margin="10">
+            <Button Content="Charge to 100%   [only once]" 
+                    HorizontalAlignment="Stretch"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" Spacing="0" Margin="10">
+            <Button Content="MOIN" 
+                    HorizontalAlignment="Stretch"/>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="3" Grid.Column="1" Spacing="0" Margin="10">
+            <Button Content="Activate selected Chargelimits" 
+                    HorizontalAlignment="Stretch"
+                    Command="{Binding OnSetChargeLimits }" />
+        </StackPanel>
+    </Grid>
 </UserControl>
