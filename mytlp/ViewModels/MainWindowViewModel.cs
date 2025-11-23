@@ -39,10 +39,15 @@ public partial class MainWindowViewModel : ViewModelBase
 
 
     [ObservableProperty] private ObservableCollection<BatteryProfile> _batteryProfiles;
-    //[ObservableProperty] private List<BatteryProfile> _batteryProfiles;
 
-    //[ObservableProperty] private BatteryProfile? selectedItem;
     [ObservableProperty] private BatteryProfile? _selectedBatteryProfile;
+
+
+    [RelayCommand]
+    public void AddProfileCommand()
+    {
+        BatteryProfiles.Add(new BatteryProfile("Prof-New", 70, 75));
+    }
 
     [RelayCommand]
     public void OnDeleteProfile()
@@ -52,6 +57,32 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             BatteryProfiles.Remove(SelectedBatteryProfile);
         }
+    }
+
+
+    // [RelayCommand]
+    // public void OnSave_Exit()
+    // {
+    //     Debug.WriteLine("Save_Exit");
+    //     SaveBatteryProfiles.Save_BatteryProfiles("BatteryProfiles.json", BatteryProfiles);
+    // }
+
+
+    [RelayCommand]
+    public void OnSaveProfiles()
+    {
+        Debug.WriteLine("OnSaveProfiles");
+        SaveBatteryProfiles.Save_BatteryProfiles("BatteryProfiles.json", BatteryProfiles);
+    }
+
+    [RelayCommand]
+    public async Task OnLoadProfiles()
+    {
+        Debug.WriteLine("OnLoadProfiles");
+        //Load_BatteryProfiles.LoadBatteryProfiles_Async("BatteryProfiles.json");
+
+        var loaded = await Load_BatteryProfiles.LoadBatteryProfiles_Async("BatteryProfiles.json");
+        BatteryProfiles = new ObservableCollection<BatteryProfile>(loaded);
     }
 
 
@@ -81,36 +112,6 @@ public partial class MainWindowViewModel : ViewModelBase
         Console.WriteLine(output);
     }
 
-
-    [RelayCommand]
-    public void AddProfileCommand()
-    {
-        BatteryProfiles.Add(new BatteryProfile("Prof-New", 70, 75));
-    }
-
-    [RelayCommand]
-    public void OnSave_Exit()
-    {
-        Debug.WriteLine("Save_Exit");
-        SaveBatteryProfiles.Save_BatteryProfiles("BatteryProfiles.json", BatteryProfiles);
-    }
-
-
-    [RelayCommand]
-    public void OnSaveProfiles()
-    {
-        Debug.WriteLine("OnSaveProfiles");
-        if (BatteryProfiles.Count > 1)
-        {
-            BatteryProfiles.RemoveAt(BatteryProfiles.Count - 1);
-        }
-    }
-
-    [RelayCommand]
-    public void OnLoadProfiles()
-    {
-        Debug.WriteLine("OnLoadProfiles");
-    }
 
     public MainWindowViewModel()
     {

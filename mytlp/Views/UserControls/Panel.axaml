@@ -15,7 +15,7 @@
         
         <Button Content="Charge once to 100%"/>
         
-        <Button Content="Save All + Exit" Command="{Binding OnSave_Exit }"/>
+        <Button Content="Save All + Exit" Command="{Binding OnSaveProfiles }"/>
         
         <Button Content="Reload Profiles" Command="{Binding OnLoadProfiles }"/>
         
