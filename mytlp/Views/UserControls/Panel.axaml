@@ -42,7 +42,8 @@
 
         <StackPanel Grid.Row="1" Grid.Column="1" Spacing="0" Margin="10">
             <Button Content="MOIN" 
-                    HorizontalAlignment="Stretch"/>
+                    HorizontalAlignment="Stretch"
+                    Command="{Binding OnMoin }" />
         </StackPanel>
         
         <StackPanel Grid.Row="3" Grid.Column="1" Spacing="0" Margin="10">

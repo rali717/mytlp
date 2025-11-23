@@ -33,10 +33,11 @@ public partial class BatteryProfile(string name, int min, int max) : ObservableO
 
 public partial class MainWindowViewModel : ViewModelBase
 {
-#pragma warning disable CA1822 // Mark members as static
-    public string Greeting => "Welcome to Avalonia!";
-#pragma warning restore CA1822 // Mark members as static
+// #pragma warning disable CA1822 // Mark members as static
+//     public string Greeting => "Welcome to Avalonia!";
+// #pragma warning restore CA1822 // Mark members as static
 
+    [ObservableProperty] private string _logText = "Log";
 
     [ObservableProperty] private ObservableCollection<BatteryProfile> _batteryProfiles;
 
@@ -47,6 +48,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public void AddProfileCommand()
     {
         BatteryProfiles.Add(new BatteryProfile("New Profile", 95, 100));
+        LogText = LogText + "\n- Add new charging profile.\n";
     }
 
     [RelayCommand]
@@ -56,6 +58,7 @@ public partial class MainWindowViewModel : ViewModelBase
         if ((SelectedBatteryProfile != null) && (BatteryProfiles.Count > 1))
         {
             BatteryProfiles.Remove(SelectedBatteryProfile);
+            LogText = LogText + "\n- Charging profile deleted.\n";
         }
     }
 
@@ -66,13 +69,21 @@ public partial class MainWindowViewModel : ViewModelBase
     //     Debug.WriteLine("Save_Exit");
     //     SaveBatteryProfiles.Save_BatteryProfiles("BatteryProfiles.json", BatteryProfiles);
     // }
-
+    
+    [RelayCommand]
+    public void OnMoin()
+    {
+        Debug.WriteLine("onMoin");
+        LogText = LogText + "\nMoin\n";
+    }
+    
 
     [RelayCommand]
     public void OnSaveProfiles()
     {
         Debug.WriteLine("OnSaveProfiles");
         SaveBatteryProfiles.Save_BatteryProfiles("BatteryProfiles.json", BatteryProfiles);
+        LogText = LogText + "\n- All Charging profiles saved\n";
     }
 
     [RelayCommand]
@@ -83,6 +94,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
         var loaded = await Load_BatteryProfiles.LoadBatteryProfiles_Async("BatteryProfiles.json");
         BatteryProfiles = new ObservableCollection<BatteryProfile>(loaded);
+        LogText = LogText + "\n- All stored charging profiles reloaded.\n";
     }
 
 
