@@ -5,19 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 
         xmlns:userControls="clr-namespace:mytlp.Views"
-
-        xmlns:behaviors="clr-namespace:mytlp.Behaviors;assembly=mytlp"
-
-        xmlns:cc="clr-namespace:mytlp.CustomControls;assembly=mytlp"
-        xmlns:local="clr-namespace:mytlp.Views"
-
+        
 
         xmlns:rs="using:RangeSlider.Avalonia.Controls"
         mc:Ignorable="d"
         d:DesignWidth="1200"
         d:DesignHeight="950"
-        x:Class="mytlp.Views.MainWindow"
-        x:DataType="vm:MainWindowViewModel"
+        x:Class="mytlp.Views.MainView"
+        x:DataType="vm:MainViewModel"
         Icon="/Assets/PhosphorIcons/battery-charging-vertical-bold__F7F7F7.png"
         Title="mytlp"
         Height="950"
@@ -39,7 +34,7 @@
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel />
+        <vm:MainViewModel />
     </Design.DataContext>
 
 

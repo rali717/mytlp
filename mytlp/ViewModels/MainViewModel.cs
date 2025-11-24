@@ -27,7 +27,7 @@ public partial class BatteryProfile(string name, int min, int max) : ObservableO
     } = name;
 }
 
-public partial class MainWindowViewModel : ViewModelBase
+public partial class MainViewModel : ViewModelBase
 {
 // #pragma warning disable CA1822 // Mark members as static
 //     public string Greeting => "Welcome to Avalonia!";
@@ -194,6 +194,8 @@ public partial class MainWindowViewModel : ViewModelBase
     }
 
 
+    
+    
     [RelayCommand]
     public void OnSetChargeLimits()
     {
@@ -247,7 +249,7 @@ public partial class MainWindowViewModel : ViewModelBase
    
 
 
-    public MainWindowViewModel()
+    public MainViewModel()
     {
         OnShowCurrentThresholds();
         
