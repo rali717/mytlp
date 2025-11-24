@@ -14,7 +14,7 @@
 
         <StackPanel Grid.Row="0" Grid.Column="0" Spacing="0" Margin="10">
 
-            <Button Content="Delete selected profile"
+            <Button Content="Delete selected profiles"
                     Button.FontSize="18"
                     HorizontalAlignment="Stretch"
                     Command="{Binding OnDeleteProfile }"

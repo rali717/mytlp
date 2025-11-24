@@ -60,6 +60,7 @@
 
                 <ScrollViewer Background="#303030">
                     <ListBox Height="700" Width="400" Background="#131313" 
+                             SelectionMode="Multiple,Toggle"
                              ItemsSource="{Binding  BatteryProfiles}"
                              SelectedItem="{Binding SelectedBatteryProfile}">
 

@@ -88,6 +88,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public void OnShowCurrentThresholds()
     {
         LogText = LogText + "\n- Current Charging Thresholds:.\n";
+        return;
         var process = new Process
         {
             StartInfo = new ProcessStartInfo
