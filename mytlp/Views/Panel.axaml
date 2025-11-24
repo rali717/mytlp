@@ -1,6 +1,6 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="mytlp.Views.UserControls.Panel"
+             x:Class="mytlp.Views.Panel"
              x:DataType="vm:MainWindowViewModel"
              xmlns:vm="using:mytlp.ViewModels">
 
@@ -17,8 +17,8 @@
             <Button Content="Delete selected profiles"
                     Button.FontSize="18"
                     HorizontalAlignment="Stretch"
-                    Command="{Binding OnDeleteProfile }"
-                    IsEnabled="{Binding SelectedBatteryProfile, Converter={x:Static ObjectConverters.IsNotNull}}" />
+                    Command="{Binding OnDeleteProfiles }"
+                    IsEnabled="{Binding SelectedBatteryProfiles, Converter={x:Static ObjectConverters.IsNotNull}}" />
         </StackPanel>
 
  
@@ -40,7 +40,12 @@
 
 
         <!-- <Button Content="Reload Profiles" Command="{Binding OnReloadProfiles }"/> -->
-
+        <StackPanel Grid.Row="3" Grid.Column="1" Spacing="0" Margin="10">
+            <Button Content="Moin" 
+                    Button.FontSize="18"
+                    HorizontalAlignment="Stretch"
+                    Command="{Binding OnMoin }" />
+        </StackPanel>
        
 
         <StackPanel Grid.Row="0" Grid.Column="2" Spacing="0" Margin="10">

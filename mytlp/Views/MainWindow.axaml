@@ -4,12 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 
-        xmlns:userControls="clr-namespace:mytlp.Views.UserControls"
+        xmlns:userControls="clr-namespace:mytlp.Views"
 
         xmlns:behaviors="clr-namespace:mytlp.Behaviors;assembly=mytlp"
 
         xmlns:cc="clr-namespace:mytlp.CustomControls;assembly=mytlp"
-        xmlns:local="clr-namespace:mytlp.Views.UserControls"
+        xmlns:local="clr-namespace:mytlp.Views"
 
 
         xmlns:rs="using:RangeSlider.Avalonia.Controls"
@@ -60,10 +60,13 @@
 
                 <ScrollViewer Background="#303030">
                     <ListBox Height="700" Width="400" Background="#131313" 
-                             SelectionMode="Multiple,Toggle"
+                             SelectionMode="Multiple"
                              ItemsSource="{Binding  BatteryProfiles}"
-                             SelectedItem="{Binding SelectedBatteryProfile}">
-
+                             
+                             
+                             SelectedItems="{Binding SelectedBatteryProfiles, Mode=TwoWay }"
+                             SelectedItem="{Binding SelectedBatteryProfile, Mode=TwoWay}">
+                        <!-- SelectedItem="{Binding SelectedBatteryProfile}" -->
                         <ListBox.ItemTemplate>
                             <DataTemplate>
 
@@ -123,7 +126,7 @@
             <StackPanel Orientation="Vertical" Margin="30,20,0,0">
 
                  <userControls:Log /> 
-                 <userControls:Panel> </userControls:Panel> 
+                 <userControls:Panel></userControls:Panel> 
 
             </StackPanel>
 

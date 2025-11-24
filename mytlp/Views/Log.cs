@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace mytlp.Views.UserControls;
+namespace mytlp.Views;
 
 public partial class Log : UserControl
 {

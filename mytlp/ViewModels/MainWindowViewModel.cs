@@ -1,5 +1,7 @@
 ﻿
+using System.Collections;
 using System.Diagnostics;
+using System.Linq;
 using mytlp.Models;
 
 // using mytlp.Models;
@@ -37,7 +39,9 @@ public partial class MainWindowViewModel : ViewModelBase
 
     [ObservableProperty] private BatteryProfile? _selectedBatteryProfile;
 
-
+    [ObservableProperty] private IList _selectedBatteryProfiles;
+   
+    
     [RelayCommand]
     public void AddProfileCommand()
     {
@@ -61,9 +65,27 @@ public partial class MainWindowViewModel : ViewModelBase
     public void OnMoin()
     {
         Debug.WriteLine("onMoin");
-        LogText = LogText + "\nMoin\n";
+     
+        LogText = LogText + "\nMoin\n";;
     }
+    
+    [RelayCommand]
+    public void OnDeleteProfiles()
+    {
+        Debug.WriteLine("OnDeleteProfiles");
+        
+        if (SelectedBatteryProfiles is null || SelectedBatteryProfiles.Count == 0)
+            return;
 
+        var toDelete = SelectedBatteryProfiles.Cast<BatteryProfile>().ToList();
+
+        foreach (var p in toDelete)
+            BatteryProfiles.Remove(p);
+ 
+        
+        LogText = LogText + "\nOnDeleteProfiles\n";;
+    }
+    
 
     [RelayCommand]
     public void OnSaveProfiles()
@@ -176,6 +198,14 @@ public partial class MainWindowViewModel : ViewModelBase
     public void OnSetChargeLimits()
     {
         Debug.WriteLine("OnSetChargeLimits");
+
+        if (SelectedBatteryProfiles.Count > 1)
+        {
+            LogText = LogText + "\n- For setting a new threshold,\n  please select only one charging profile.\n";
+            return;
+        }
+        
+        
 
         if (SelectedBatteryProfile != null)
         {

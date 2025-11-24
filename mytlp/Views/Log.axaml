@@ -1,9 +1,9 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="mytlp.Views.UserControls.Log" 
+             x:Class="mytlp.Views.Log" 
              xmlns:vm="using:mytlp.ViewModels"
              x:DataType="vm:MainWindowViewModel"
-             xmlns:local="clr-namespace:mytlp.Views.UserControls">
+             xmlns:local="clr-namespace:mytlp.Views">
 
     <StackPanel Spacing="8" Margin="25">
   
