@@ -1,0 +1,23 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!-- Add Controls for Previewer Here -->
+        </Border>
+    </Design.PreviewWith>
+
+    <!-- Add Styles Here -->    
+    
+    <Style Selector=":is(ListBox).draggable > :is(ListBoxItem)">
+        <Setter Property="ZIndex" Value="0" />
+        
+        <Setter Property="(Interaction.Behaviors)">
+            <BehaviorCollectionTemplate>
+                <BehaviorCollection>
+                    <ItemDragBehavior  Orientation="Vertical" HorizontalDragThreshold="3" VerticalDragThreshold="3"  />
+                </BehaviorCollection>
+            </BehaviorCollectionTemplate>
+        </Setter>   
+    </Style>
+    
+</Styles>

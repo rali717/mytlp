@@ -6,8 +6,10 @@
 
         xmlns:userControls="clr-namespace:mytlp.Views"
         
+        xmlns:b="using:mytlp.Behaviors"
 
         xmlns:rs="using:RangeSlider.Avalonia.Controls"
+       
         mc:Ignorable="d"
         d:DesignWidth="1200"
         d:DesignHeight="950"
@@ -26,7 +28,8 @@
 
 
     <Window.Styles>
-        <StyleInclude Source="/Styles/SliderStyles.axaml" />
+        <StyleInclude Source="/Styles/SliderStyles.axaml"/>
+        <StyleInclude Source="/Styles/AppStyles.axaml" />
 
         <!-- <StyleInclude Source="/Styles/RangeSlider.axaml" /> -->
     </Window.Styles>
@@ -56,11 +59,18 @@
                 <ScrollViewer Background="#303030">
                     <ListBox Height="700" Width="400" Background="#131313" 
                              SelectionMode="Multiple"
+                             Classes="draggable"
                              ItemsSource="{Binding  BatteryProfiles}"
-                             
+
+                            
                              
                              SelectedItems="{Binding SelectedBatteryProfiles, Mode=TwoWay }"
                              SelectedItem="{Binding SelectedBatteryProfile, Mode=TwoWay}">
+                        
+
+                        
+                      
+                        
                         <!-- SelectedItem="{Binding SelectedBatteryProfile}" -->
                         <ListBox.ItemTemplate>
                             <DataTemplate>
@@ -69,7 +79,8 @@
                                         BorderBrush="Black"
                                         BorderThickness="4"
                                         CornerRadius="10"
-                                        Padding="5" Margin="10">
+                                        Padding="5" Margin="10"
+                                        >
 
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal">

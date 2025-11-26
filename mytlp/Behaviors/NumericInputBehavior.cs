@@ -1,4 +1,3 @@
-
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Xaml.Interactivity;
@@ -60,5 +59,5 @@ public class NumericInputBehavior : Behavior<TextBox>
         key >= Key.D0 && key <= Key.D9 ||
         key >= Key.NumPad0 && key <= Key.NumPad9;
 }
-    
+
 
