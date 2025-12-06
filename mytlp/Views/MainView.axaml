@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 
         xmlns:userControls="clr-namespace:mytlp.Views"
-        
+
         xmlns:b="using:mytlp.Behaviors"
 
         xmlns:rs="using:RangeSlider.Avalonia.Controls"
-       
+        xmlns:primitives="clr-namespace:RangeSlider.Avalonia.Controls.Primitives;assembly=RangeSlider.Avalonia"
+
         mc:Ignorable="d"
         d:DesignWidth="1200"
         d:DesignHeight="950"
@@ -28,8 +29,8 @@
 
 
     <Window.Styles>
-        <StyleInclude Source="/Styles/SliderStyles.axaml"/>
-        <StyleInclude Source="/Styles/AppStyles.axaml" />
+        <StyleInclude Source="/Styles/SliderStyles.axaml" />
+        <StyleInclude Source="/Styles/AppDefaultStyles.axaml" />
 
         <!-- <StyleInclude Source="/Styles/RangeSlider.axaml" /> -->
     </Window.Styles>
@@ -57,20 +58,16 @@
 
 
                 <ScrollViewer Background="#303030">
-                    <ListBox Height="700" Width="400" Background="#131313" 
-                             SelectionMode="Multiple"
+                    <ListBox Height="700" Width="400" Background="#131313"
+                             SelectionMode="Multiple,Toggle"
                              Classes="draggable"
                              ItemsSource="{Binding  BatteryProfiles}"
 
-                            
-                             
+
                              SelectedItems="{Binding SelectedBatteryProfiles, Mode=TwoWay }"
                              SelectedItem="{Binding SelectedBatteryProfile, Mode=TwoWay}">
-                        
 
-                        
-                      
-                        
+
                         <!-- SelectedItem="{Binding SelectedBatteryProfile}" -->
                         <ListBox.ItemTemplate>
                             <DataTemplate>
@@ -79,8 +76,7 @@
                                         BorderBrush="Black"
                                         BorderThickness="4"
                                         CornerRadius="10"
-                                        Padding="5" Margin="10"
-                                        >
+                                        Padding="5" Margin="10">
 
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal">
@@ -96,7 +92,7 @@
 
                                                 <NumericUpDown Value="{Binding Path=  Min,Mode=TwoWay }"
                                                                TextAlignment="Center" ShowButtonSpinner="False"
-                                                               FormatString="0" Increment="1" Minimum="0" Maximum="100" 
+                                                               FormatString="0" Increment="1" Minimum="0" Maximum="100"
                                                                Margin="0,1,0,0" />
 
                                             </StackPanel>
@@ -113,8 +109,11 @@
                                                         IsThumbOverlap="True"
                                                         TickFrequency="5"
                                                         IsSnapToTickEnabled="True"
-                                                        TickPlacement="BottomRight" />
-
+                                                        TickPlacement="BottomRight"/>
+                                            
+                               
+                                                        
+                                        
                                     </StackPanel>
                                 </Border>
                             </DataTemplate>
@@ -131,8 +130,8 @@
 
             <StackPanel Orientation="Vertical" Margin="30,20,0,0">
 
-                 <userControls:Log /> 
-                 <userControls:Panel></userControls:Panel> 
+                <userControls:Log />
+                <userControls:Panel></userControls:Panel>
 
             </StackPanel>
 

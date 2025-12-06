@@ -41,7 +41,8 @@
 
         <!-- <Button Content="Reload Profiles" Command="{Binding OnReloadProfiles }"/> -->
         <StackPanel Grid.Row="3" Grid.Column="1" Spacing="0" Margin="10">
-            <Button Content="Moin" 
+            <Button Content="Moin " 
+                    IsVisible="False"
                     Button.FontSize="18"
                     HorizontalAlignment="Stretch"
                     Command="{Binding OnMoin }" />

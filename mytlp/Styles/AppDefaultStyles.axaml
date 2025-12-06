@@ -1,0 +1,48 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!-- Add Controls for Previewer Here -->
+        </Border>
+    </Design.PreviewWith>
+
+    <!-- Add Styles Here -->
+
+    <Style Selector=":is(ListBox).draggable > :is(ListBoxItem)">
+        <Setter Property="ZIndex" Value="0" />
+
+        <Setter Property="(Interaction.Behaviors)">
+            <BehaviorCollectionTemplate>
+                <BehaviorCollection>
+                    <ItemDragBehavior Orientation="Vertical" HorizontalDragThreshold="26" VerticalDragThreshold="26" />
+                </BehaviorCollection>
+            </BehaviorCollectionTemplate>
+        </Setter>
+    </Style>
+
+
+    <Style Selector=":is(ListBoxItem)">
+        <Style Selector="^:selected > ContentPresenter">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="LawnGreen" />
+
+        </Style>
+        <Style Selector="^:pointerover > ContentPresenter">
+            <Setter Property="Foreground" Value="Red" />
+        </Style>
+    </Style>
+
+    <Style Selector="ListBoxItem">
+        <Style Selector="^:pointer > ContentPresenter">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="LawnGreen" />
+        </Style>
+        <Style Selector="^:pointerover > ContentPresenter">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="DarkRed" />
+            <Setter Property="BorderBrush" Value="BlueViolet" />
+        </Style>
+    </Style>
+
+
+</Styles>
