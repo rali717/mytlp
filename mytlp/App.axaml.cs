@@ -16,6 +16,11 @@ public partial class App : Application
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
+
+
+     //   this.AttachDeveloperTools();
+
+        
     }
 
     public override void OnFrameworkInitializationCompleted()
@@ -46,9 +51,10 @@ public partial class App : Application
             BindingPlugins.DataValidators.Remove(plugin);
         }
     }
-        private void TrayIcon_OnClicked(object? sender, EventArgs e)
+
+    private void TrayIcon_OnClicked(object? sender, EventArgs e)
     {
         Trace.WriteLine("Icon clicked");
-       // throw new NotImplementedException();
+        // throw new NotImplementedException();
     }
 }

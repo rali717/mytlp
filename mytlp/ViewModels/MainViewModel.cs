@@ -64,7 +64,7 @@ public partial class MainViewModel : ViewModelBase
     [RelayCommand]
     public void OnMoin()
     {
-        Debug.WriteLine("onMoin");
+        Debug.WriteLine("onMoin");  
      
         LogText = LogText + "\nMoin\n";;
     }

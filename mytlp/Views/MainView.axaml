@@ -69,19 +69,23 @@
 
 
                         <!-- SelectedItem="{Binding SelectedBatteryProfile}" -->
+                        <!-- <Border 
+                            Background="#181818"
+BorderBrush="Black"-->
                         <ListBox.ItemTemplate>
                             <DataTemplate>
 
-                                <Border Background="#181818"
-                                        BorderBrush="Black"
-                                        BorderThickness="4"
-                                        CornerRadius="10"
-                                        Padding="5" Margin="10">
+                                <Border
+                                    Background="#181818"
+                                    
+                                    BorderThickness="4"
+                                    CornerRadius="10"
+                                    Padding="5" Margin="10">
 
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal">
                                             <TextBox Text="{Binding Path=  Name,Mode=TwoWay }"
-                                                     Width="200" TextAlignment="Center" FontSize="20" Margin="25" />
+                                                     Width="200" TextAlignment="Center"  Margin="25" />
                                             <StackPanel Orientation="Vertical" VerticalAlignment="Center">
 
                                                 <NumericUpDown Value="{Binding Path=  Max,Mode=TwoWay }"
@@ -109,11 +113,11 @@
                                                         IsThumbOverlap="True"
                                                         TickFrequency="5"
                                                         IsSnapToTickEnabled="True"
-                                                        TickPlacement="BottomRight"/>
-                                            
-                               
+                                                        TickPlacement="BottomRight" 
                                                         
-                                        
+                                                        />
+
+
                                     </StackPanel>
                                 </Border>
                             </DataTemplate>

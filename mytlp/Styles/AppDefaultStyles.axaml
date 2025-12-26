@@ -21,27 +21,39 @@
     </Style>
 
 
-    <Style Selector=":is(ListBoxItem)">
-        <Style Selector="^:selected > ContentPresenter">
-            <Setter Property="Background" Value="Transparent" />
-            <Setter Property="Foreground" Value="LawnGreen" />
-
-        </Style>
+    <Style Selector=":is(Border)">
+        <Setter Property="Border.BorderBrush" Value="White" />
         <Style Selector="^:pointerover > ContentPresenter">
-            <Setter Property="Foreground" Value="Red" />
+            <Setter Property="Border.BorderBrush" Value="DarkGreen" />
         </Style>
     </Style>
 
-    <Style Selector="ListBoxItem">
-        <Style Selector="^:pointer > ContentPresenter">
-            <Setter Property="Background" Value="Transparent" />
-            <Setter Property="Foreground" Value="LawnGreen" />
-        </Style>
+
+    <Style Selector=":is(ListBoxItem)">
+
+
+        <Setter Property="TextBox.FontSize" Value="20" />
+        <Setter Property="Background" Value="#181818" />
+        <Setter Property="BorderBrush" Value="Red" />
+
+
         <Style Selector="^:pointerover > ContentPresenter">
-            <Setter Property="Background" Value="Transparent" />
-            <Setter Property="Foreground" Value="DarkRed" />
-            <Setter Property="BorderBrush" Value="BlueViolet" />
+
+            <Setter Property="Background" Value="Green" />
+            <Setter Property="TextBox.FontSize" Value="20" />
+            <Setter Property="TextBox.BorderBrush" Value="Blue" />
         </Style>
+
+        <Style Selector="^:selected > ContentPresenter">
+            <Setter Property="Background" Value="Yellow" />
+            <Setter Property="TextBox.Foreground" Value="Red" />
+            <Setter Property="TextBox.BorderBrush" Value="Red" />
+        </Style>
+
+        <Style Selector="^:selected > ContentPresenter">
+            <Setter Property="Border.BorderThickness" Value="10" />
+        </Style>
+
     </Style>
 
 
